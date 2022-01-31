@@ -1,9 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.sql.Timestamp;
 
@@ -25,53 +23,20 @@ public class BoardingPass implements Price {
   }
 
   public String genTicNum () throws IOException {
-    FileWriter fw = new FileWriter("verifyTicketNum.txt", true);
-    BufferedWriter bw = new BufferedWriter(fw);
-    PrintWriter pw = new PrintWriter(bw);
-
     Random num = new Random();
     int ticketNum = num.nextInt(1, 2000);
-
-
-//    PrintWriter ticketFile = new PrintWriter(
-//        new BufferedWriter(
-//            new FileWriter("verifyTicketNum.txt")
-//        )
-//    );
-    pw.println(ticketNum);
-    pw.flush();
+    addToFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
   }
 
-//  public class Dices {
-//    public static void main(String[] args) {
-//      Random ran = new Random();
-//      int number = 0;
-//      try (PrintWriter file = new PrintWriter(
-//          new BufferedWriter(
-//              new FileWriter("test1.txt")));
-//      ) {
-//
-//        for (int i = 1; i <= 10; i++) {
-//          number = ran.nextInt(6) + 1;
-//          file.println(number);
-//        }
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//      }
-//
-//      System.out.println("File test1.txt has been created!");
+  public void addToFile (String ticNum) throws IOException{
+//    try {
+      Files.write(Paths.get("verifyTicketNumber.txt"), ticNum.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+//    } catch (IOException e){
+//      System.out.println(e);
 //    }
-//  }
-//  public ArrayList<String> verifiedTicketNumber() throws IOException {
-//    ArrayList<String> ticketFile = new ArrayList<String>();
-//
-//    ticketFile.addAll(Files.readAllLines(Paths.get("verifyTicketNum.txt")));
-//  }
-
-  public void writeToAFile() throws IOException {
-    Files.write(Paths.get("verifyTicketNum.txt"), this.ticketNumber.getBytes());
   }
+
 
 
   @Override
