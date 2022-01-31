@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.sql.Timestamp;
 
-public class BoardingPass implements TestingInterface {
+public class BoardingPass implements Price {
   int ticketNumber;
   Date date = new Date();
   String from;
@@ -28,17 +28,12 @@ public class BoardingPass implements TestingInterface {
   }
 
 
-
-
   public static void main(String[] args){
     Date created = new Date();
     BoardingPass pass = new BoardingPass(created, "Richmond, VA", "Raleigh, NC");
     Client newClient = new Client("Kendricka", "Sonder", "ks@something.com", "9107291805", 'M', 45);
     System.out.println(pass + "\n" + pass.message() + "Your Ticket Price is " + pass.price(newClient.age, newClient.gender));
     System.out.println(pass.message2());
-
-//    System.out.println(newClient);
-
 
   }
 }

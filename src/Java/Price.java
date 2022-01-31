@@ -1,4 +1,4 @@
-public interface TestingInterface {
+public interface Price {
   default String message() {return "Thank you for purchasing a ticket";}
   default String message2() {return "You on getting there safely!";}
 
