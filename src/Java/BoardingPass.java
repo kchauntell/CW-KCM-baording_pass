@@ -1,9 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.sql.Timestamp;
 
@@ -25,22 +23,20 @@ public class BoardingPass implements Price {
   }
 
   public String genTicNum () throws IOException {
-    FileWriter fw = new FileWriter("verifyTicketNum.txt", true);
-    BufferedWriter bw = new BufferedWriter(fw);
-    PrintWriter pw = new PrintWriter(bw);
-
     Random num = new Random();
     int ticketNum = num.nextInt(1, 2000);
-
-
-    pw.println(ticketNum);
-    pw.flush();
+    addToFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
   }
 
-  public void writeToAFile() throws IOException {
-    Files.write(Paths.get("verifyTicketNum.txt"), this.ticketNumber.getBytes());
+  public void addToFile (String ticNum) throws IOException{
+//    try {
+      Files.write(Paths.get("verifyTicketNumber.txt"), ticNum.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+//    } catch (IOException e){
+//      System.out.println(e);
+//    }
   }
+
 
 
   @Override
