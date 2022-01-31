@@ -33,41 +33,10 @@ public class BoardingPass implements Price {
     int ticketNum = num.nextInt(1, 2000);
 
 
-//    PrintWriter ticketFile = new PrintWriter(
-//        new BufferedWriter(
-//            new FileWriter("verifyTicketNum.txt")
-//        )
-//    );
     pw.println(ticketNum);
     pw.flush();
     return String.valueOf(ticketNum);
   }
-
-//  public class Dices {
-//    public static void main(String[] args) {
-//      Random ran = new Random();
-//      int number = 0;
-//      try (PrintWriter file = new PrintWriter(
-//          new BufferedWriter(
-//              new FileWriter("test1.txt")));
-//      ) {
-//
-//        for (int i = 1; i <= 10; i++) {
-//          number = ran.nextInt(6) + 1;
-//          file.println(number);
-//        }
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//      }
-//
-//      System.out.println("File test1.txt has been created!");
-//    }
-//  }
-//  public ArrayList<String> verifiedTicketNumber() throws IOException {
-//    ArrayList<String> ticketFile = new ArrayList<String>();
-//
-//    ticketFile.addAll(Files.readAllLines(Paths.get("verifyTicketNum.txt")));
-//  }
 
   public void writeToAFile() throws IOException {
     Files.write(Paths.get("verifyTicketNum.txt"), this.ticketNumber.getBytes());
