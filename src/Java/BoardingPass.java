@@ -30,11 +30,10 @@ public class BoardingPass implements Price {
   }
 
   public void addToFile (String ticNum) throws IOException{
-//    try {
-      Files.write(Paths.get("verifyTicketNumber.txt"), ticNum.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-//    } catch (IOException e){
-//      System.out.println(e);
-//    }
+      Files.write(Paths.get("verifyTicketNumber.txt"),
+          ticNum.getBytes(),
+          StandardOpenOption.CREATE,
+          StandardOpenOption.APPEND);
   }
 
 
