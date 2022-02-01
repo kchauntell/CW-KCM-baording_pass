@@ -26,12 +26,12 @@ public class BoardingPass implements Price {
 
   public String genTicNum () throws IOException {
     Random num = new Random();
-    int ticketNum = num.nextInt(1, 300000);
-    addToFile(String.valueOf(ticketNum));
+    int ticketNum = num.nextInt(1, 200000000);
+    addToTicketFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
   }
 
-  public void addToFile (String ticNum) throws IOException{
+  public void addToTicketFile (String ticNum) throws IOException{
 
       Files.write(Paths.get("verifyTicketNumber.txt"),
           (ticNum + lineSeparator()).getBytes(),
