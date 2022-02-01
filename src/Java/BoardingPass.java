@@ -5,6 +5,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.sql.Timestamp;
 
+import static java.lang.System.lineSeparator;
+
 public class BoardingPass implements Price {
   String ticketNumber;
   Date date = new Date();
@@ -24,14 +26,15 @@ public class BoardingPass implements Price {
 
   public String genTicNum () throws IOException {
     Random num = new Random();
-    int ticketNum = num.nextInt(1, 2000);
+    int ticketNum = num.nextInt(1, 300000);
     addToFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
   }
 
   public void addToFile (String ticNum) throws IOException{
+
       Files.write(Paths.get("verifyTicketNumber.txt"),
-          ticNum.getBytes(),
+          (ticNum + lineSeparator()).getBytes(),
           StandardOpenOption.CREATE,
           StandardOpenOption.APPEND);
   }
@@ -50,10 +53,14 @@ public class BoardingPass implements Price {
 
 
   public static void main(String[] args) throws IOException {
-    Random ticketNumber = new Random(200);
-    Date created = new Date();
-    BoardingPass pass = new BoardingPass(created, "Richmond, VA", "Raleigh, NC");
-    Client newClient = new Client("Kendricka", "Sonder", "ks@something.com", "9107291805", 'M', 45);
-    System.out.println(pass + "\n" + pass.message() + "Your Ticket Price is " + pass.price(newClient.age, newClient.gender));
+//    Random ticketNumber = new Random(200);
+//    Date created = new Date();
+//    BoardingPass pass = new BoardingPass(created, "Richmond, VA", "Raleigh, NC");
+//    Client newClient = new Client("Kendricka", "Sonder", "ks@something.com", "9107291805", 'M', 45);
+//    System.out.println(pass + "\n" + pass.message() + "Your Ticket Price is " + pass.price(newClient.age, newClient.gender));
+
+   List<String> files  =  Files.readAllLines(Paths.get("verifyTicketNumber.txt"));
+    System.out.println(files);
+
   }
 }

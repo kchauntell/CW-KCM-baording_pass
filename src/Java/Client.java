@@ -1,7 +1,7 @@
 
 
 public class Client {
-  String firstName;
+  static String firstName;
   String lastName;
   String email;
   String phoneNumber;
