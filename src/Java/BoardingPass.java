@@ -53,11 +53,11 @@ public class BoardingPass implements Price {
 
 
   public static void main(String[] args) throws IOException {
-//    Random ticketNumber = new Random(200);
-//    Date created = new Date();
-//    BoardingPass pass = new BoardingPass(created, "Richmond, VA", "Raleigh, NC");
-//    Client newClient = new Client("Kendricka", "Sonder", "ks@something.com", "9107291805", 'M', 45);
-//    System.out.println(pass + "\n" + pass.message() + "Your Ticket Price is " + pass.price(newClient.age, newClient.gender));
+    Random ticketNumber = new Random(200);
+    Date created = new Date();
+    BoardingPass pass = new BoardingPass(created, "Richmond, VA", "Raleigh, NC");
+    Client newClient = new Client("Kendricka", "Sonder", "ks@something.com", "9107291805", 'M', 45);
+    System.out.println(pass + "\n" + pass.message() + "Your Ticket Price is " + pass.price(newClient.age, newClient.gender));
 
    List<String> files  =  Files.readAllLines(Paths.get("verifyTicketNumber.txt"));
     System.out.println(files);
