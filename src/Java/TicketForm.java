@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -258,10 +260,6 @@ public class TicketForm extends JFrame implements ActionListener {
     numberOfTickets.setLocation(100,275);
     c.add(numberOfTickets);
 
-    numOfTicSlider = new JSlider(1,50,1);
-    numOfTicSlider.setSize(250,20);
-    numOfTicSlider.setLocation(100,300);
-    c.add(numOfTicSlider);
 
     term = new JCheckBox("Is you Vibin' with us or nah?");
     term.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -308,6 +306,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     setVisible(true);
   }
+
 
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submit) {
