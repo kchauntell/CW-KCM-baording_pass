@@ -337,7 +337,6 @@ public class TicketForm extends JFrame implements ActionListener {
     return newBoardPass;
 
   }
-
   public Client setNewClient() {
     String clientName;
     String clientEmail;
@@ -356,6 +355,7 @@ public class TicketForm extends JFrame implements ActionListener {
     return newClient;
   }
 
+  //adding information to file.
   public void addToClientFile (String data) throws IOException {
 
     Files.write(Paths.get("clientList.txt"),
