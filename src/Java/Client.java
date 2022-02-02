@@ -1,15 +1,14 @@
 
 
 public class Client {
-  String firstName;
-  String lastName;
+  String firstAndLastName;
   String email;
   String phoneNumber;
   char gender;
   int age;
 
 
-  Client(String fN, String lN, String email, String pN, char g, int age){
+  Client(String name, String email, String pN, char g, int age){
 
     if(!email.contains("@") || !email.contains(".com")) {
       throw new Error("Your email is not valid. Please enter valid email. ");
@@ -24,8 +23,7 @@ public class Client {
       throw new Error("You must enter a single character Value of 'M' for Male or 'F' for Female");
     }
 
-    this.firstName = fN;
-    this.lastName = lN;
+    this.firstAndLastName = name;
     this.email = email;
     this.phoneNumber = pN;
     this.gender = g;
@@ -35,8 +33,7 @@ public class Client {
 
   @Override
   public String toString() {
-    return "First Name: " + firstName +
-        "\n LastName: " + lastName +
+    return "Name: " + firstAndLastName +
         "\n Email: " + email +
         "\n Phone: " + phoneNumber +
         "\n Gender: " + gender +

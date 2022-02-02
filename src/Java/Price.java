@@ -11,5 +11,4 @@ public interface Price {
     return ticketPrice;
   }
 
-
 }
