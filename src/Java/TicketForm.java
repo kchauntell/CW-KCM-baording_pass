@@ -31,7 +31,7 @@ public class TicketForm extends JFrame implements ActionListener {
   private JLabel boardingLocation;
   private JComboBox boardingLocationList;
   private JLabel numberOfTickets;
-  private JSlider numOfTicSlider;
+  private JSpinner numOfTicSpinner;
   private JCheckBox term;
   private JButton submit;
   private JButton reset;
@@ -110,6 +110,10 @@ public class TicketForm extends JFrame implements ActionListener {
       "Hampton, VA"
   };
 
+  // for JSpinner
+  String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+                           "13", "14", "15", "16", "17", "18", "19", "20"};
+  SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
 
   public TicketForm() {
     setTitle("Ced & Ken's Vibin' Ventures Travel Company");
@@ -253,12 +257,17 @@ public class TicketForm extends JFrame implements ActionListener {
     boardingLocationList.setLocation(225, 250);
     c.add(boardingLocationList);
 
-    numberOfTickets = new JLabel ("How many Tickets being Purchased? ");
+    numberOfTickets = new JLabel ("How many Tickets? ");
     numberOfTickets.setFont(new Font("Monospace", Font.PLAIN, 14));
     numberOfTickets.setForeground(new Color(34,205,247));
     numberOfTickets.setSize(275, 20);
     numberOfTickets.setLocation(100,275);
     c.add(numberOfTickets);
+
+    numOfTicSpinner = new JSpinner(ticketNumModel);
+    numOfTicSpinner.setSize(50, 20);
+    numOfTicSpinner.setLocation(250, 275);
+    c.add(numOfTicSpinner);
 
 
     term = new JCheckBox("Is you Vibin' with us or nah?");
@@ -307,7 +316,6 @@ public class TicketForm extends JFrame implements ActionListener {
     setVisible(true);
   }
 
-
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submit) {
       if (term.isSelected()) {
@@ -330,11 +338,13 @@ public class TicketForm extends JFrame implements ActionListener {
             + "/" + (String)year.getSelectedItem()
             + "\n";
         String data3 =
-            "Destination: " + (String)destinationList.getSelectedItem();
+            "Destination: " + (String)destinationList.getSelectedItem() + "\n";
         String data4 =
-            "Boarding Location: " + (String)boardingLocationList.getSelectedItem();
+            "Boarding Location: " + (String)boardingLocationList.getSelectedItem() + "\n";
+        String data5 =
+            "You purchased " + (String)numOfTicSpinner.getValue() + " ticket(s)";
 
-        tout.setText(data + data1 + data2 + data3 + data4);
+        tout.setText(data + data1 + data2 + data3 + data4 + data5);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
       }
