@@ -3,7 +3,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Date;
+
+import static java.lang.System.lineSeparator;
 
 
 public class TicketForm extends JFrame implements ActionListener {
@@ -316,15 +323,59 @@ public class TicketForm extends JFrame implements ActionListener {
     setVisible(true);
   }
 
+  //Setting new BoardingPass and Client information to class to add to file.
+  public BoardingPass setBoardPass () throws IOException {
+    Date date;
+    String from;
+    String to;
+
+    date = new Date();
+    from = String.valueOf(boardingLocationList.getSelectedItem());
+    to = String.valueOf(destinationList.getSelectedItem());
+
+    BoardingPass newBoardPass = new BoardingPass(date, from, to);
+    return newBoardPass;
+
+  }
+
+  public Client setNewClient() {
+    String clientName;
+    String clientEmail;
+    String clientPhoneNumber;
+    char clientGender;
+    int clientAge;
+
+    clientName = tName.getText();
+    clientEmail = tEmail.getText();
+    clientPhoneNumber = tPhoneNumber.getText();
+    if (male.isSelected()) clientGender = 'M';
+    else clientGender = 'F';
+    clientAge = 5;
+
+    Client newClient = new Client (clientName, clientEmail, clientPhoneNumber, clientGender, clientAge);
+    return newClient;
+  }
+
+  public void addToClientFile (String data) throws IOException {
+
+    Files.write(Paths.get("clientList.txt"),
+        (data + lineSeparator()).getBytes(),
+        StandardOpenOption.CREATE,
+        StandardOpenOption.APPEND);
+  }
+
+  // Once Submit Button is hit....
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submit) {
+
       if (term.isSelected()) {
         String data1;
         String data
             = "Name : "
             + tName.getText() + "\n"
             + "Email : "
-            + tEmail.getText() + "\n";
+            + tEmail.getText() + "\n"
+            + tPhoneNumber.getText() + "\n";
         if (male.isSelected())
           data1 = "Gender : Male"
               + "\n";
@@ -347,6 +398,19 @@ public class TicketForm extends JFrame implements ActionListener {
         tout.setText(data + data1 + data2 + data3 + data4 + data5);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
+
+        Client addClient = setNewClient();
+        BoardingPass addBoardPass = null;
+        try {
+          addBoardPass = setBoardPass();
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+        try {
+          addToClientFile(String.valueOf(addClient) + String.valueOf(addBoardPass));
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
       }
       else {
         tout.setText("");
