@@ -9,6 +9,7 @@ public class TicketForm extends JFrame implements ActionListener {
   //Components of the Form
   private Container c;
   private JLabel title;
+  private JLabel title2;
   private JLabel name;
   private JTextField tName;
   private JLabel email;
@@ -27,6 +28,8 @@ public class TicketForm extends JFrame implements ActionListener {
   private JComboBox destinationList;
   private JLabel boardingLocation;
   private JComboBox boardingLocationList;
+  private JLabel numberOfTickets;
+  private JSlider numOfTicSlider;
   private JCheckBox term;
   private JButton submit;
   private JButton reset;
@@ -113,16 +116,26 @@ public class TicketForm extends JFrame implements ActionListener {
     setResizable(false);
 
     c = getContentPane();
+    c.setBackground(Color.darkGray);
     c.setLayout(null);
 
     title = new JLabel("Registration Form");
     title.setFont(new Font("Arial", Font.BOLD, 24));
+    title.setForeground(new Color(34,205,247));
     title.setSize(300, 30);
-    title.setLocation(300, 30);
+    title.setLocation(150, 30);
     c.add(title);
+
+    title2 = new JLabel("Receipt of Purchase");
+    title2.setFont(new Font("Arial", Font.BOLD, 24));
+    title2.setForeground(new Color(14,249,22));
+    title2.setSize(300, 30);
+    title2.setLocation(550, 30);
+    c.add(title2);
 
     name = new JLabel("First and Last Name: ");
     name.setFont(new Font("Monospace", Font.PLAIN, 14));
+    name.setForeground(new Color(34,205,247));
     name.setSize(200, 20);
     name.setLocation(100,100);
     c.add(name);
@@ -135,6 +148,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     email = new JLabel("Email: ");
     email.setFont(new Font("Monospace", Font.PLAIN, 14));
+    email.setForeground(new Color(34,205,247));
     email.setSize(200, 20);
     email.setLocation(100, 125);
     c.add(email);
@@ -147,6 +161,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     phoneNumber = new JLabel("Phone Number: ");
     phoneNumber.setFont(new Font("Monospace", Font.PLAIN, 14));
+    phoneNumber.setForeground(new Color(34,205,247));
     phoneNumber.setSize(200, 20);
     phoneNumber.setLocation(100, 150);
     c.add(phoneNumber);
@@ -159,6 +174,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     gender = new JLabel("Gender");
     gender.setFont(new Font("Monospace", Font.PLAIN, 14));
+    gender.setForeground(new Color(34,205,247));
     gender.setSize(100, 20);
     gender.setLocation(100, 175);
     c.add(gender);
@@ -166,6 +182,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     male = new JRadioButton("Male");
     male.setFont(new Font("Monospace", Font.PLAIN, 12));
+    male.setForeground(new Color(34,205,247));
     male.setSelected(true);
     male.setSize(75, 20);
     male.setLocation(200, 175);
@@ -173,6 +190,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     female = new JRadioButton("Female");
     female.setFont(new Font("Monospace", Font.PLAIN, 12));
+    female.setForeground(new Color(34,205,247));
     female.setSelected(false);
     female.setSize(80, 20);
     female.setLocation(275, 175);
@@ -184,6 +202,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     dob = new JLabel("Date of Birth: ");
     dob.setFont(new Font("Monospace", Font.PLAIN, 14));
+    dob.setForeground(new Color(34,205,247));
     dob.setSize(100, 20);
     dob.setLocation(100, 200);
     c.add(dob);
@@ -208,6 +227,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     destination = new JLabel("Destination: ");
     destination.setFont(new Font("Monospace", Font.PLAIN, 14));
+    destination.setForeground(new Color(34,205,247));
     destination.setSize(200, 20);
     destination.setLocation(100,225);
     c.add(destination);
@@ -220,6 +240,7 @@ public class TicketForm extends JFrame implements ActionListener {
 
     boardingLocation = new JLabel("Boarding Location: ");
     boardingLocation.setFont(new Font("Monospace", Font.PLAIN, 14));
+    boardingLocation.setForeground(new Color(34,205,247));
     boardingLocation.setSize(200, 20);
     boardingLocation.setLocation(100,250);
     c.add(boardingLocation);
@@ -230,23 +251,36 @@ public class TicketForm extends JFrame implements ActionListener {
     boardingLocationList.setLocation(225, 250);
     c.add(boardingLocationList);
 
+    numberOfTickets = new JLabel ("How many Tickets being Purchased? ");
+    numberOfTickets.setFont(new Font("Monospace", Font.PLAIN, 14));
+    numberOfTickets.setForeground(new Color(34,205,247));
+    numberOfTickets.setSize(275, 20);
+    numberOfTickets.setLocation(100,275);
+    c.add(numberOfTickets);
+
+    numOfTicSlider = new JSlider(1,50,1);
+    numOfTicSlider.setSize(250,20);
+    numOfTicSlider.setLocation(100,300);
+    c.add(numOfTicSlider);
+
     term = new JCheckBox("Is you Vibin' with us or nah?");
     term.setFont(new Font("Arial", Font.PLAIN, 14));
+    term.setForeground(new Color(34,205,247));
     term.setSize(250, 20);
-    term.setLocation(150, 300);
+    term.setLocation(150, 350);
     c.add(term);
 
     submit = new JButton("Submit");
     submit.setFont(new Font("Arial", Font.PLAIN, 14));
     submit.setSize(100, 20);
-    submit.setLocation(150, 350);
+    submit.setLocation(150, 400);
     submit.addActionListener(this);
     c.add(submit);
 
     reset = new JButton("Reset");
     reset.setFont(new Font("Arial", Font.PLAIN, 14));
     reset.setSize(100, 20);
-    reset.setLocation(275, 350);
+    reset.setLocation(275, 400);
     reset.addActionListener(this);
     c.add(reset);
 
@@ -283,7 +317,7 @@ public class TicketForm extends JFrame implements ActionListener {
             = "Name : "
             + tName.getText() + "\n"
             + "Email : "
-            + email.getText() + "\n";
+            + tEmail.getText() + "\n";
         if (male.isSelected())
           data1 = "Gender : Male"
               + "\n";
