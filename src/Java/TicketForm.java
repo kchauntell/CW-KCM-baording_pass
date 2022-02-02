@@ -352,7 +352,7 @@ public class TicketForm extends JFrame implements ActionListener {
         tout.setText("");
         resadd.setText("");
         res.setText("Please accept the"
-            + " terms & conditions..");
+            + " terms & conditions...");
       }
     }
 
