@@ -331,20 +331,20 @@ public class TicketForm extends JFrame implements ActionListener {
     tout.setLocation(500, 80);
     tout.setLineWrap(true);
     tout.setEditable(false);
-    c.add(tout);
+//    c.add(tout);
 
     res = new JLabel("");
     res.setFont(new Font("Arial", Font.PLAIN, 20));
     res.setSize(500, 25);
     res.setLocation(100, 500);
-    c.add(res);
+//    c.add(res);
 
     resadd = new JTextArea();
     resadd.setFont(new Font("Arial", Font.PLAIN, 15));
     resadd.setSize(200, 75);
     resadd.setLocation(580, 175);
     resadd.setLineWrap(true);
-    c.add(resadd);
+//    c.add(resadd);
 
 
     setVisible(true);
@@ -396,6 +396,10 @@ public class TicketForm extends JFrame implements ActionListener {
     if (e.getSource() == submit) {
 
       if (term.isSelected()) {
+        c.add(tout);
+        c.add(res);
+        c.add(resadd);
+
         String data1;
         String data
             = "Name : "
@@ -435,7 +439,8 @@ public class TicketForm extends JFrame implements ActionListener {
           ex.printStackTrace();
         }
         try {
-          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass));
+          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
+              "\n" + (String)numOfTicSpinner.getValue());
         } catch (IOException ex) {
           ex.printStackTrace();
         }
