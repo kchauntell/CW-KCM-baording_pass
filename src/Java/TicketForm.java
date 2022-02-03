@@ -1,9 +1,14 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Date;
+
+import static java.lang.System.lineSeparator;
 
 
 public class TicketForm extends JFrame implements ActionListener {
@@ -38,6 +43,9 @@ public class TicketForm extends JFrame implements ActionListener {
   private JTextArea tout;
   private JLabel res;
   private JTextArea resadd;
+  private JLabel departureTime;
+  private JComboBox departureTimeList;
+  private JComboBox ampmOption;
 
   // Date of Birth Data for ComboBox
   private String[] dates
@@ -114,6 +122,13 @@ public class TicketForm extends JFrame implements ActionListener {
   String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                            "13", "14", "15", "16", "17", "18", "19", "20"};
   SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
+
+  //for departure times
+  String[] departTimes = {"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00",
+                          "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30",
+                          "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00",
+                          "10:30", "11:00", "11:30"};
+  String[] amPM = {"AM", "PM"};
 
   public TicketForm() {
     setTitle("Ced & Ken's Vibin' Ventures Travel Company");
@@ -257,16 +272,35 @@ public class TicketForm extends JFrame implements ActionListener {
     boardingLocationList.setLocation(225, 250);
     c.add(boardingLocationList);
 
+    departureTime = new JLabel("Departure Time: ");
+    departureTime.setFont(new Font("Arial", Font.PLAIN, 14));
+    departureTime.setForeground(new Color(34,205,247));
+    departureTime.setSize(150, 20);
+    departureTime.setLocation(100, 275);
+    c.add(departureTime);
+
+    departureTimeList = new JComboBox(departTimes);
+    departureTimeList.setFont(new Font("Arial", Font.PLAIN, 12));
+    departureTimeList.setSize(100, 20);
+    departureTimeList.setLocation(225, 275);
+    c.add(departureTimeList);
+
+    ampmOption = new JComboBox(amPM);
+    ampmOption.setFont(new Font("Arial", Font.PLAIN, 12));
+    ampmOption.setSize(75, 20);
+    ampmOption.setLocation(325,275);
+    c.add(ampmOption);
+
     numberOfTickets = new JLabel ("How many Tickets? ");
     numberOfTickets.setFont(new Font("Monospace", Font.PLAIN, 14));
     numberOfTickets.setForeground(new Color(34,205,247));
     numberOfTickets.setSize(275, 20);
-    numberOfTickets.setLocation(100,275);
+    numberOfTickets.setLocation(100,300);
     c.add(numberOfTickets);
 
     numOfTicSpinner = new JSpinner(ticketNumModel);
     numOfTicSpinner.setSize(50, 20);
-    numOfTicSpinner.setLocation(250, 275);
+    numOfTicSpinner.setLocation(250, 300);
     c.add(numOfTicSpinner);
 
 
@@ -297,6 +331,7 @@ public class TicketForm extends JFrame implements ActionListener {
     tout.setLocation(500, 80);
     tout.setLineWrap(true);
     tout.setEditable(false);
+//    c.add(tout);
 
     res = new JLabel("");
     res.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -315,8 +350,51 @@ public class TicketForm extends JFrame implements ActionListener {
     setVisible(true);
   }
 
+  //Setting new BoardingPass and Client information to class to add to file.
+  public BoardingPass setBoardPass () throws IOException {
+    Date date;
+    String from;
+    String to;
+
+    date = new Date();
+    from = String.valueOf(boardingLocationList.getSelectedItem());
+    to = String.valueOf(destinationList.getSelectedItem());
+
+    BoardingPass newBoardPass = new BoardingPass(date, from, to);
+    return newBoardPass;
+
+  }
+  public Client setNewClient() {
+    String clientName;
+    String clientEmail;
+    String clientPhoneNumber;
+    char clientGender;
+    int clientAge;
+
+    clientName = tName.getText();
+    clientEmail = tEmail.getText();
+    clientPhoneNumber = tPhoneNumber.getText();
+    if (male.isSelected()) clientGender = 'M';
+    else clientGender = 'F';
+    clientAge = 5;
+
+    Client newClient = new Client (clientName, clientEmail, clientPhoneNumber, clientGender, clientAge);
+    return newClient;
+  }
+
+  //adding information to file.
+  public void addToClientFile (String data) throws IOException {
+
+    Files.write(Paths.get("clientList.txt"),
+        (data + lineSeparator()).getBytes(),
+        StandardOpenOption.CREATE,
+        StandardOpenOption.APPEND);
+  }
+
+  // Once Submit Button is hit....
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submit) {
+
       if (term.isSelected()) {
         c.add(tout);
         c.add(res);
@@ -327,7 +405,8 @@ public class TicketForm extends JFrame implements ActionListener {
             = "Name : "
             + tName.getText() + "\n"
             + "Email : "
-            + tEmail.getText() + "\n";
+            + tEmail.getText() + "\n"
+            + tPhoneNumber.getText() + "\n";
         if (male.isSelected())
           data1 = "Gender : Male"
               + "\n";
@@ -350,6 +429,21 @@ public class TicketForm extends JFrame implements ActionListener {
         tout.setText(data + data1 + data2 + data3 + data4 + data5);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
+
+        //adding information to Client File.
+        Client addClient = setNewClient();
+        BoardingPass addBoardPass = null;
+        try {
+          addBoardPass = setBoardPass();
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+        try {
+          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
+              "\n" + (String)numOfTicSpinner.getValue());
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
       }
       else {
         tout.setText("");
