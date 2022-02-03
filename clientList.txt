@@ -1,0 +1,12 @@
+Name: Ced MacMillion
+ Email: imakesthemonies@runit.com
+ Phone: 8441234567
+ Gender: M
+ Age: 5
+Ticket Confirmed : Wed Feb 02 22:35:11 EST 2022
+Depart From: Charleston, SC
+Departure Time: null
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number is : 59496041
+5
