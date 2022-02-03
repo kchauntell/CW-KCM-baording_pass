@@ -26,6 +26,7 @@ public class BoardingPass implements Price {
 
   public String genTicNum () throws IOException {
     Random num = new Random();
+
     int ticketNum = num.nextInt(1, 200000000);
     addToTicketFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
@@ -37,8 +38,8 @@ public class BoardingPass implements Price {
           (ticNum + lineSeparator()).getBytes(),
           StandardOpenOption.CREATE,
           StandardOpenOption.APPEND);
-  }
 
+  }
 
   @Override
   public String toString() {
