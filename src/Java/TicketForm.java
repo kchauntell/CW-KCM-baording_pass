@@ -7,11 +7,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import static java.lang.System.lineSeparator;
 
 
-public class TicketForm extends JFrame implements ActionListener {
+public class TicketForm extends JFrame implements ActionListener, Price {
 
   //Components of the Form
   private Container c;
@@ -376,7 +377,7 @@ public class TicketForm extends JFrame implements ActionListener {
     clientPhoneNumber = tPhoneNumber.getText();
     if (male.isSelected()) clientGender = 'M';
     else clientGender = 'F';
-    clientAge = 5;
+    clientAge = ageSetter((String) year.getSelectedItem(), (String) Objects.requireNonNull(month.getSelectedItem()), (String) date.getSelectedItem());
 
     Client newClient = new Client (clientName, clientEmail, clientPhoneNumber, clientGender, clientAge);
     return newClient;
