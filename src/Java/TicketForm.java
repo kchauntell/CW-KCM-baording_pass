@@ -47,6 +47,7 @@ public class TicketForm extends JFrame implements ActionListener {
   private JComboBox departureTimeList;
   private JComboBox ampmOption;
 
+
   // Date of Birth Data for ComboBox
   private String[] dates
       = { "1", "2", "3", "4", "5",
@@ -415,16 +416,16 @@ public class TicketForm extends JFrame implements ActionListener {
               + "\n";
         String data2
             = "DOB : "
-            + (String)date.getSelectedItem()
-            + "/" + (String)month.getSelectedItem()
-            + "/" + (String)year.getSelectedItem()
+            + date.getSelectedItem()
+            + "/" + month.getSelectedItem()
+            + "/" + year.getSelectedItem()
             + "\n";
         String data3 =
-            "Destination: " + (String)destinationList.getSelectedItem() + "\n";
+            "Destination: " + destinationList.getSelectedItem() + "\n";
         String data4 =
-            "Boarding Location: " + (String)boardingLocationList.getSelectedItem() + "\n";
+            "Boarding Location: " + boardingLocationList.getSelectedItem() + "\n";
         String data5 =
-            "You purchased " + (String)numOfTicSpinner.getValue() + " ticket(s)";
+            "You purchased " + numOfTicSpinner.getValue() + " ticket(s)";
 
         tout.setText(data + data1 + data2 + data3 + data4 + data5);
         tout.setEditable(false);
