@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -45,6 +43,9 @@ public class TicketForm extends JFrame implements ActionListener {
   private JTextArea tout;
   private JLabel res;
   private JTextArea resadd;
+  private JLabel departureTime;
+  private JComboBox departureTimeList;
+  private JComboBox ampmOption;
 
   // Date of Birth Data for ComboBox
   private String[] dates
@@ -121,6 +122,13 @@ public class TicketForm extends JFrame implements ActionListener {
   String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                            "13", "14", "15", "16", "17", "18", "19", "20"};
   SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
+
+  //for departure times
+  String[] departTimes = {"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00",
+                          "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30",
+                          "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00",
+                          "10:30", "11:00", "11:30"};
+  String[] amPM = {"AM", "PM"};
 
   public TicketForm() {
     setTitle("Ced & Ken's Vibin' Ventures Travel Company");
@@ -264,16 +272,35 @@ public class TicketForm extends JFrame implements ActionListener {
     boardingLocationList.setLocation(225, 250);
     c.add(boardingLocationList);
 
+    departureTime = new JLabel("Departure Time: ");
+    departureTime.setFont(new Font("Arial", Font.PLAIN, 14));
+    departureTime.setForeground(new Color(34,205,247));
+    departureTime.setSize(150, 20);
+    departureTime.setLocation(100, 275);
+    c.add(departureTime);
+
+    departureTimeList = new JComboBox(departTimes);
+    departureTimeList.setFont(new Font("Arial", Font.PLAIN, 12));
+    departureTimeList.setSize(100, 20);
+    departureTimeList.setLocation(225, 275);
+    c.add(departureTimeList);
+
+    ampmOption = new JComboBox(amPM);
+    ampmOption.setFont(new Font("Arial", Font.PLAIN, 12));
+    ampmOption.setSize(75, 20);
+    ampmOption.setLocation(325,275);
+    c.add(ampmOption);
+
     numberOfTickets = new JLabel ("How many Tickets? ");
     numberOfTickets.setFont(new Font("Monospace", Font.PLAIN, 14));
     numberOfTickets.setForeground(new Color(34,205,247));
     numberOfTickets.setSize(275, 20);
-    numberOfTickets.setLocation(100,275);
+    numberOfTickets.setLocation(100,300);
     c.add(numberOfTickets);
 
     numOfTicSpinner = new JSpinner(ticketNumModel);
     numOfTicSpinner.setSize(50, 20);
-    numOfTicSpinner.setLocation(250, 275);
+    numOfTicSpinner.setLocation(250, 300);
     c.add(numOfTicSpinner);
 
 
@@ -399,6 +426,7 @@ public class TicketForm extends JFrame implements ActionListener {
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
 
+        //adding information to Client File.
         Client addClient = setNewClient();
         BoardingPass addBoardPass = null;
         try {
@@ -407,7 +435,7 @@ public class TicketForm extends JFrame implements ActionListener {
           ex.printStackTrace();
         }
         try {
-          addToClientFile(String.valueOf(addClient) + String.valueOf(addBoardPass));
+          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass));
         } catch (IOException ex) {
           ex.printStackTrace();
         }
