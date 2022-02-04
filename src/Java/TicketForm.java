@@ -161,9 +161,11 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   // for JSpinner
   String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                            "13", "14", "15", "16", "17", "18", "19", "20"};
+  String[] numberOfTics2 = {"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
+                            "12", "13", "14", "15", "16", "17", "18", "19" };
   SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
-  SpinnerListModel childNumModel = new SpinnerListModel(numberOfTics);
-  SpinnerListModel seniorsNumModel = new SpinnerListModel(numberOfTics);
+  SpinnerListModel childNumModel = new SpinnerListModel(numberOfTics2);
+  SpinnerListModel seniorsNumModel = new SpinnerListModel(numberOfTics2);
 
   //for departure times
   String[] departTimes = {"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00",
@@ -490,7 +492,8 @@ public class TicketForm extends JFrame implements ActionListener, Price {
 
   //calculate total price
 //  public double getTotalPrice() {
-//    int numTickets = (Integer)numOfTicSpinner.getValue();
+//    int numTotalTickets = (Integer)numOfTicSpinner.getValue();
+//    int
 //
 //  }
 
