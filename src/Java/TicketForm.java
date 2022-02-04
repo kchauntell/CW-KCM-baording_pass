@@ -8,8 +8,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
-
 import static java.lang.System.lineSeparator;
+
 
 
 public class TicketForm extends JFrame implements ActionListener, Price {
@@ -47,7 +47,38 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   private JLabel departureTime;
   private JComboBox departureTimeList;
   private JComboBox ampmOption;
+  private JLabel departureDate;
+  private JButton pickDate;
+  private JTextField departDate;
 
+  // method to bring up  and choose date...
+  public void Picker() {
+    JLabel label = new JLabel("Selected Date:");
+    final JTextField text = new JTextField(20);
+    JButton b = new JButton("Pull Up");
+    JButton s = new JButton("Submit");
+    JPanel p = new JPanel();
+    p.add(label);
+    p.add(text);
+    p.add(b);
+    p.add(s);
+    final JFrame f = new JFrame();
+    f.getContentPane().add(p);
+    f.pack();
+    f.setVisible(true);
+    b.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent ae) {
+          text.setText(new DatePicker(f).setPickedDate());
+      }
+    });
+    s.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent se) {
+          departDate.setText(text.getText());
+          setDefaultCloseOperation(EXIT_ON_CLOSE);
+      }
+    });
+
+  }
 
   // Date of Birth Data for ComboBox
   private String[] dates
@@ -132,6 +163,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
                           "10:30", "11:00", "11:30"};
   String[] amPM = {"AM", "PM"};
 
+  //creating the form
   public TicketForm() {
     setTitle("Ced & Ken's Vibin' Ventures Travel Company");
     setBounds(300, 90, 900, 600);
@@ -305,25 +337,44 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     numOfTicSpinner.setLocation(250, 300);
     c.add(numOfTicSpinner);
 
+    departureDate = new JLabel("Departure Date: ");
+    departureDate.setFont(new Font("Monospace", Font.PLAIN, 14));
+    departureDate.setForeground(new Color(34,205,247));
+    departureDate.setSize(150, 20);
+    departureDate.setLocation(100,325);
+    c.add(departureDate);
+
+    pickDate = new JButton("Pick Date");
+    pickDate.setFont(new Font("Arial", Font.PLAIN, 14));
+    pickDate.setSize(80, 20);
+    pickDate.setLocation(350, 325);
+    pickDate.addActionListener(this);
+    c.add(pickDate);
+
+    departDate = new JTextField();
+    departDate.setFont(new Font("Arial", Font.PLAIN, 12));
+    departDate.setSize(125,20);
+    departDate.setLocation(215,325);
+    c.add(departDate);
 
     term = new JCheckBox("Is you Vibin' with us or nah?");
     term.setFont(new Font("Arial", Font.PLAIN, 14));
     term.setForeground(new Color(34,205,247));
     term.setSize(250, 20);
-    term.setLocation(150, 350);
+    term.setLocation(150, 400);
     c.add(term);
 
     submit = new JButton("Submit");
     submit.setFont(new Font("Arial", Font.PLAIN, 14));
     submit.setSize(100, 20);
-    submit.setLocation(150, 400);
+    submit.setLocation(150, 450);
     submit.addActionListener(this);
     c.add(submit);
 
     reset = new JButton("Reset");
     reset.setFont(new Font("Arial", Font.PLAIN, 14));
     reset.setSize(100, 20);
-    reset.setLocation(275, 400);
+    reset.setLocation(275, 450);
     reset.addActionListener(this);
     c.add(reset);
 
@@ -395,6 +446,10 @@ public class TicketForm extends JFrame implements ActionListener, Price {
 
   // Once Submit Button is hit....
   public void actionPerformed(ActionEvent e) {
+    if(e.getSource() == pickDate) {
+      Picker();
+    }
+
     if (e.getSource() == submit) {
 
       if (term.isSelected()) {
@@ -425,10 +480,14 @@ public class TicketForm extends JFrame implements ActionListener, Price {
             "Destination: " + destinationList.getSelectedItem() + "\n";
         String data4 =
             "Boarding Location: " + boardingLocationList.getSelectedItem() + "\n";
-        String data5 =
+        String data5
+            = "Departure Date: " + departDate.getText() + "\n";
+        String data6
+            = "Departure Time: " + departureTimeList.getSelectedItem() + " " + ampmOption.getSelectedItem() + "\n";
+        String data7 =
             "You purchased " + numOfTicSpinner.getValue() + " ticket(s)";
 
-        tout.setText(data + data1 + data2 + data3 + data4 + data5);
+        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
 
@@ -442,7 +501,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         }
         try {
           addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
-              "\n" + (String)numOfTicSpinner.getValue());
+              "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue());
         } catch (IOException ex) {
           ex.printStackTrace();
         }
