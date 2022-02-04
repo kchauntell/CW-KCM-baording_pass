@@ -455,6 +455,8 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         StandardOpenOption.APPEND);
   }
 
+
+
   // Once Submit Button is hit....
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == pickDate) {
@@ -496,7 +498,8 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         String data6
             = "Departure Time: " + departureTimeList.getSelectedItem() + " " + ampmOption.getSelectedItem() + "\n";
         String data7 =
-            "You purchased " + numOfTicSpinner.getValue() + " ticket(s)";
+            "You purchased " + numOfTicSpinner.getValue() + " ticket(s)" + "\n";
+
 
         tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7);
         tout.setEditable(false);
