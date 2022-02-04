@@ -34,7 +34,7 @@ public interface Price {
     int yea = Integer.parseInt(year);
     LocalDate today = LocalDate.now(); //Today's date
     LocalDate birthday = LocalDate.of(dayday, mnth, yea);
-    Period p = Period.between(birthday, today);
+    Period p = Period.between(birthday, today); //Calculates the age
     return p.getYears();
   }
 
