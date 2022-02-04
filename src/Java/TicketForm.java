@@ -405,15 +405,26 @@ public class TicketForm extends JFrame implements ActionListener, Price {
 
   //Setting new BoardingPass and Client information to class to add to file.
   public BoardingPass setBoardPass () throws IOException {
+    ArrayList<String> ticketList = new ArrayList<String>();
     Date date;
     String from;
     String to;
+    String depart;
+    String tickets = (String) numOfTicSpinner.getValue();
+    int ticketNum ;
+
+    for(var i = 0; i < Integer.parseInt(tickets); i++) {
+      ticketNum = Integer.parseInt(BoardingPass.genTicNum());
+      ticketList.add(String.valueOf(ticketNum));
+    }
 
     date = new Date();
     from = String.valueOf(boardingLocationList.getSelectedItem());
     to = String.valueOf(destinationList.getSelectedItem());
+    depart = String.valueOf(departureTimeList.getSelectedItem()) + " " +
+             String.valueOf(ampmOption.getSelectedItem());
 
-    BoardingPass newBoardPass = new BoardingPass(date, from, to);
+    BoardingPass newBoardPass = new BoardingPass(date, from, to, depart,ticketList);
     return newBoardPass;
 
   }

@@ -13,31 +13,31 @@ public class BoardingPass implements Price {
   Date date = new Date();
   String from;
   String to;
-  public Timestamp departureTime;
+  String departureTime;
   public Timestamp arrivalTime;
   public Timestamp boardingTime;
 
 
-  BoardingPass (Date date, String from, String to) throws IOException {
+  BoardingPass (Date date, String from, String to, String depart, ArrayList<String> ticketNum) throws IOException {
     this.date = date;
     this.from = from;
     this.to = to;
-    this.ticketNumber = genTicNum();
+    this.ticketNumber = String.valueOf(ticketNum);
+    this.departureTime = depart;
   }
 
   BoardingPass(){
 
   }
 
-  public String genTicNum () throws IOException {
+  public static String genTicNum() throws IOException {
     Random num = new Random();
-
     int ticketNum = num.nextInt(1, 200000000);
     addToTicketFile(String.valueOf(ticketNum));
     return String.valueOf(ticketNum);
   }
 
-  public void addToTicketFile (String ticNum) throws IOException{
+  public static void addToTicketFile(String ticNum) throws IOException{
 
       Files.write(Paths.get("verifyTicketNumber.txt"),
           (ticNum + lineSeparator()).getBytes(),
@@ -58,7 +58,7 @@ public class BoardingPass implements Price {
       long boardingMills = current + minutesToMills(minutesUntilBoarding);
       long departure = boardingMills + minutesToMills(totalBoardingTime);
       long arrival = departure + hoursToMills(flightLengthHours);
-
+      return null;
   }
 
     private static long minutesToMills(long minutes) {
@@ -76,7 +76,7 @@ public class BoardingPass implements Price {
         "\nDeparture Time: " + departureTime +
         "\nEstimated Arrival Time: " + arrivalTime +
         "\nArriving at: " + to +
-        "\nYour Ticket Number is : " + ticketNumber;
+        "\nYour Ticket Number(s) is : " + ticketNumber;
   }
 
 }
