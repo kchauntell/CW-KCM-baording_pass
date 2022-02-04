@@ -66,6 +66,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     f.getContentPane().add(p);
     f.pack();
     f.setVisible(true);
+    f.setResizable(false);
     b.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent ae) {
           text.setText(new DatePicker(f).setPickedDate());
@@ -74,7 +75,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     s.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent se) {
           departDate.setText(text.getText());
-          setDefaultCloseOperation(EXIT_ON_CLOSE);
+          f.setVisible(false);
       }
     });
 
@@ -540,6 +541,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
       month.setSelectedIndex(0);
       year.setSelectedIndex(0);
       resadd.setText(def);
+      departDate.setText(def);
     }
   }
 }
