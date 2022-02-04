@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 import static java.lang.System.lineSeparator;
@@ -381,7 +382,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
 
     tout = new JTextArea();
     tout.setFont(new Font("Arial", Font.PLAIN, 15));
-    tout.setSize(325, 400);
+    tout.setSize(320, 400);
     tout.setLocation(500, 80);
     tout.setLineWrap(true);
     tout.setEditable(false);
@@ -457,7 +458,6 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   }
 
 
-
   // Once Submit Button is hit....
   public void actionPerformed(ActionEvent e) {
     if(e.getSource() == pickDate) {
@@ -470,6 +470,21 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         c.add(tout);
         c.add(res);
         c.add(resadd);
+
+        //adding information to Client File.
+        Client addClient = setNewClient();
+        BoardingPass addBoardPass = null;
+        try {
+          addBoardPass = setBoardPass();
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+        try {
+          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
+              "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue());
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
 
         String data1;
         String data
@@ -501,25 +516,19 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         String data7 =
             "You purchased " + numOfTicSpinner.getValue() + " ticket(s)" + "\n";
 
+        StringBuilder data8 = new StringBuilder();
+        String[] ticketNumArr = addBoardPass.ticketNumber.substring(1, addBoardPass.ticketNumber.length() - 1).split(", ");
+        int count = 1;
+        for (String s : ticketNumArr) {
+          String answer = "Ticket " + count + " is: " + s + "\n";
+          data8.append(answer);
+          count++;
+        }
 
-        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7);
+        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
 
-        //adding information to Client File.
-        Client addClient = setNewClient();
-        BoardingPass addBoardPass = null;
-        try {
-          addBoardPass = setBoardPass();
-        } catch (IOException ex) {
-          ex.printStackTrace();
-        }
-        try {
-          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
-              "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue());
-        } catch (IOException ex) {
-          ex.printStackTrace();
-        }
       }
       else {
         tout.setText("");
