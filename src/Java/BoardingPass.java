@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.sql.Timestamp;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.lineSeparator;
 
@@ -24,6 +25,10 @@ public class BoardingPass implements Price {
     this.ticketNumber = genTicNum();
   }
 
+  BoardingPass(){
+
+  }
+
   public String genTicNum () throws IOException {
     Random num = new Random();
 
@@ -40,6 +45,29 @@ public class BoardingPass implements Price {
           StandardOpenOption.APPEND);
 
   }
+  public static BoardingPass boardingTimes() throws IOException {
+      BoardingPass bpETA = new BoardingPass();
+
+      long current = System.currentTimeMillis();
+
+      long minutesUntilBoarding = (long)(Math.random() * 30);
+
+      long totalBoardingTime = 45;
+      long flightLengthHours = (long)(Math.random() * 5 + 1);
+
+      long boardingMills = current + minutesToMills(minutesUntilBoarding);
+      long departure = boardingMills + minutesToMills(totalBoardingTime);
+      long arrival = departure + hoursToMills(flightLengthHours);
+
+  }
+
+    private static long minutesToMills(long minutes) {
+        return TimeUnit.MINUTES.toMillis(minutes);
+    }
+
+    private static long hoursToMills(long hours) {
+        return TimeUnit.HOURS.toMillis(hours);
+    }
 
   @Override
   public String toString() {
