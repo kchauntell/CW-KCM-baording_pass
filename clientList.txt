@@ -287,3 +287,27 @@ Estimated Arrival Time: null
 Arriving at: Los Angeles, CA
 Your Ticket Number(s) is : [147347060, 111925646, 172905289, 147190373, 115719597, 147884492, 119693323, 4883421]
 # Tickets Purchased: 8
+Name: Kendra Miller
+ Email: kenmill@gmail.com
+ Phone: 9107291805
+ Gender: F
+ Age: 24
+Ticket Confirmed : Sat Feb 05 09:03:28 EST 2022
+Depart From: Charlotte, NC
+Departure Time: 12:00 AM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [108280213, 159701100, 28832541]
+# Tickets Purchased: 3
+Name: Kendra Miller
+ Email: km@gmail.com
+ Phone: 9107291805
+ Gender: F
+ Age: 58
+Ticket Confirmed : Sat Feb 05 09:05:26 EST 2022
+Depart From: Myrtle Beach, SC
+Departure Time: 06:00 PM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [31792802, 58754272, 131484521, 165709742]
+# Tickets Purchased: 4

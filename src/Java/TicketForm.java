@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 import static java.lang.System.lineSeparator;
@@ -84,8 +83,8 @@ public class TicketForm extends JFrame implements ActionListener, Price {
           f.setVisible(false);
       }
     });
-
   }
+
 
   // Date of Birth Data for ComboBox
   private String[] dates
@@ -161,11 +160,11 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   // for JSpinner
   String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                            "13", "14", "15", "16", "17", "18", "19", "20"};
-  String[] numberOfTics2 = {"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-                            "12", "13", "14", "15", "16", "17", "18", "19" };
+//  String[] numberOfTics2 = {"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
+//                            "12", "13", "14", "15", "16", "17", "18", "19" };
   SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
-  SpinnerListModel childNumModel = new SpinnerListModel(numberOfTics2);
-  SpinnerListModel seniorsNumModel = new SpinnerListModel(numberOfTics2);
+//  SpinnerListModel childNumModel = new SpinnerListModel(numberOfTics2);
+//  SpinnerListModel seniorsNumModel = new SpinnerListModel(numberOfTics2);
 
   //for departure times
   String[] departTimes = {"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00",
@@ -348,68 +347,68 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     numOfTicSpinner.setLocation(225, 300);
     c.add(numOfTicSpinner);
 
-    children = new JLabel("# of Children under 12: ");
-    children.setFont(new Font("Monospace", Font.PLAIN, 14));
-    children.setForeground(new Color(34,205,247));
-    children.setSize(250, 20);
-    children.setLocation(100,325);
-    c.add(children);
-
-    numOfChildren = new JSpinner(childNumModel);
-    numOfChildren.setSize(50, 20);
-    numOfChildren.setLocation(270, 325);
-    c.add(numOfChildren);
-
-    seniors = new JLabel("# of Adults over 65: ");
-    seniors.setFont(new Font("Monospace", Font.PLAIN, 14));
-    seniors.setForeground(new Color(34,205,247));
-    seniors.setSize(250, 20);
-    seniors.setLocation(100,350);
-    c.add(seniors);
-
-    numOfSeniors = new JSpinner(seniorsNumModel);
-    numOfSeniors.setSize(50, 20);
-    numOfSeniors.setLocation(245, 350);
-    c.add(numOfSeniors);
+//    children = new JLabel("# of Children under 12: ");
+//    children.setFont(new Font("Monospace", Font.PLAIN, 14));
+//    children.setForeground(new Color(34,205,247));
+//    children.setSize(250, 20);
+//    children.setLocation(100,325);
+//    c.add(children);
+//
+//    numOfChildren = new JSpinner(childNumModel);
+//    numOfChildren.setSize(50, 20);
+//    numOfChildren.setLocation(270, 325);
+//    c.add(numOfChildren);
+//
+//    seniors = new JLabel("# of Adults over 65: ");
+//    seniors.setFont(new Font("Monospace", Font.PLAIN, 14));
+//    seniors.setForeground(new Color(34,205,247));
+//    seniors.setSize(250, 20);
+//    seniors.setLocation(100,350);
+//    c.add(seniors);
+//
+//    numOfSeniors = new JSpinner(seniorsNumModel);
+//    numOfSeniors.setSize(50, 20);
+//    numOfSeniors.setLocation(245, 350);
+//    c.add(numOfSeniors);
 
     departureDate = new JLabel("Departure Date: ");
     departureDate.setFont(new Font("Monospace", Font.PLAIN, 14));
     departureDate.setForeground(new Color(34,205,247));
     departureDate.setSize(150, 20);
-    departureDate.setLocation(100,375);
+    departureDate.setLocation(100,325);
     c.add(departureDate);
 
     pickDate = new JButton("Pick Date");
     pickDate.setFont(new Font("Arial", Font.PLAIN, 14));
     pickDate.setSize(80, 20);
-    pickDate.setLocation(350, 375);
+    pickDate.setLocation(350, 325);
     pickDate.addActionListener(this);
     c.add(pickDate);
 
     departDate = new JTextField();
     departDate.setFont(new Font("Arial", Font.PLAIN, 12));
     departDate.setSize(125,20);
-    departDate.setLocation(215,375);
+    departDate.setLocation(215,325);
     c.add(departDate);
 
     term = new JCheckBox("Is you Vibin' with us or nah?");
     term.setFont(new Font("Arial", Font.PLAIN, 14));
     term.setForeground(new Color(34,205,247));
     term.setSize(250, 20);
-    term.setLocation(150, 450);
+    term.setLocation(150, 400);
     c.add(term);
 
     submit = new JButton("Submit");
     submit.setFont(new Font("Arial", Font.PLAIN, 14));
     submit.setSize(100, 20);
-    submit.setLocation(150, 475);
+    submit.setLocation(150, 450);
     submit.addActionListener(this);
     c.add(submit);
 
     reset = new JButton("Reset");
     reset.setFont(new Font("Arial", Font.PLAIN, 14));
     reset.setSize(100, 20);
-    reset.setLocation(275, 475);
+    reset.setLocation(275, 450);
     reset.addActionListener(this);
     c.add(reset);
 
@@ -532,6 +531,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
             + tName.getText() + "\n"
             + "Email : "
             + tEmail.getText() + "\n"
+            + "Contact Number: "
             + tPhoneNumber.getText() + "\n";
         if (male.isSelected())
           data1 = "Gender : Male"
