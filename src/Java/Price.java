@@ -10,7 +10,6 @@ public interface Price {
     if(age <= 12) ticketPrice = ticketPrice / 2.00;
     if(age >= 60) ticketPrice = ticketPrice - (ticketPrice * 0.60);
     if(gender == 'F') ticketPrice = ticketPrice - (ticketPrice * 0.25);
-
     return ticketPrice;
   }
 
