@@ -58,7 +58,12 @@ public class BoardingPass implements Price {
       long boardingMills = current + minutesToMills(minutesUntilBoarding);
       long departure = boardingMills + minutesToMills(totalBoardingTime);
       long arrival = departure + hoursToMills(flightLengthHours);
-      return null;
+
+      bpETA.boardingTime = new Timestamp(boardingMills);
+      bpETA.arrivalTime = new Timestamp(arrival);
+      bpETA.departureTime = String.valueOf(new Timestamp(departure));
+
+      return bpETA;
   }
 
     private static long minutesToMills(long minutes) {
