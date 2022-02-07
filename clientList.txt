@@ -311,3 +311,53 @@ Estimated Arrival Time: null
 Arriving at: Los Angeles, CA
 Your Ticket Number(s) is : [31792802, 58754272, 131484521, 165709742]
 # Tickets Purchased: 4
+Name: Kendra Miller
+ Email: kenMill@gmail.com
+ Phone: 9107291805
+ Gender: F
+ Age: 67
+Ticket Confirmed : Mon Feb 07 15:31:50 EST 2022
+Depart From: Los Angeles, CA
+Departure Time: 02:00 PM
+Estimated Arrival Time: null
+Arriving at: Chicago, IL
+Your Ticket Number(s) is : [120352570, 185326585]
+# Tickets Purchased: 2
+Name: Kendra Miller
+ Email: ken@gmail.com
+ Phone: 9107291805
+ Gender: F
+ Age: 67
+Ticket Confirmed : Mon Feb 07 15:33:43 EST 2022
+Depart From: Myrtle Beach, SC
+Departure Time: 02:30 PM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [70346369, 145716527]
+# Tickets Purchased: 2
+Name: new person
+ Email: justtesting@testing.com
+ Phone: 1234567
+ Gender: F
+ Age: 3
+Ticket Confirmed : Mon Feb 07 15:40:59 EST 2022
+Depart From: Charleston, SC
+Departure Time: 02:30 AM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [188650158]
+# Tickets Purchased: 1
+Total Price is: $50.0
+Name: another NEW
+ Email: new@kc.com
+ Phone: 1234567
+ Gender: F
+ Age: 70
+Ticket Confirmed : Mon Feb 07 15:43:30 EST 2022
+Depart From: Myrtle Beach, SC
+Departure Time: 01:30 AM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [18651811]
+# Tickets Purchased: 1
+Total Price is: $40.0

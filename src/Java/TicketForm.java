@@ -510,21 +510,6 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         c.add(res);
         c.add(resadd);
 
-        //adding information to Client File.
-        Client addClient = setNewClient();
-        BoardingPass addBoardPass = null;
-        try {
-          addBoardPass = setBoardPass();
-        } catch (IOException ex) {
-          ex.printStackTrace();
-        }
-        try {
-          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
-              "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue());
-        } catch (IOException ex) {
-          ex.printStackTrace();
-        }
-
         String data1;
         String data
             = "Name : "
@@ -556,6 +541,25 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         String data7 =
             "You purchased " + numOfTicSpinner.getValue() + " ticket(s)" + "\n";
 
+        //adding information to Client File.
+        Client addClient = setNewClient();
+        BoardingPass addBoardPass = null;
+        try {
+          addBoardPass = setBoardPass();
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+        try {
+          addToClientFile(String.valueOf(addClient) + "\n" + String.valueOf(addBoardPass) +
+              "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue() +
+              "\n" + "Total Price is: $" +
+              totalPrice(ageSetter((String) year.getSelectedItem(), (String) Objects.requireNonNull(month.getSelectedItem()),
+                  (String) date.getSelectedItem()), data1, (String)numOfTicSpinner.getValue()));
+        } catch (IOException ex) {
+          ex.printStackTrace();
+        }
+
+
         StringBuilder data8 = new StringBuilder();
         String[] ticketNumArr = addBoardPass.ticketNumber.substring(1, addBoardPass.ticketNumber.length() - 1).split(", ");
         int count = 1;
@@ -564,8 +568,14 @@ public class TicketForm extends JFrame implements ActionListener, Price {
           data8.append(answer);
           count++;
         }
+        String data9
+            = "Your Total Price is: $" +
+            totalPrice(ageSetter((String) year.getSelectedItem(), (String) Objects.requireNonNull(month.getSelectedItem()),
+                    (String) date.getSelectedItem()),
+                    data1,
+                    (String)numOfTicSpinner.getValue());
 
-        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8);
+        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8 + data9);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
 
