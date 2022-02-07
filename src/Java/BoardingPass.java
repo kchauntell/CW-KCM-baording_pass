@@ -61,7 +61,7 @@ public class BoardingPass implements Price {
 
       bpETA.boardingTime = new Timestamp(boardingMills);
       bpETA.arrivalTime = new Timestamp(arrival);
-      bpETA.departureTime = new Timestamp(departure);
+      bpETA.departureTime = String.valueOf(new Timestamp(departure));
 
       return bpETA;
   }
