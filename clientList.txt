@@ -348,3 +348,16 @@ Arriving at: Los Angeles, CA
 Your Ticket Number(s) is : [188650158]
 # Tickets Purchased: 1
 Total Price is: $50.0
+Name: another NEW
+ Email: new@kc.com
+ Phone: 1234567
+ Gender: F
+ Age: 70
+Ticket Confirmed : Mon Feb 07 15:43:30 EST 2022
+Depart From: Myrtle Beach, SC
+Departure Time: 01:30 AM
+Estimated Arrival Time: null
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [18651811]
+# Tickets Purchased: 1
+Total Price is: $40.0
