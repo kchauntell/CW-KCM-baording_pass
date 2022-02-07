@@ -11,7 +11,6 @@ public interface Price {
     if(age <= 12 && gender.equals("F")) ticketPrice = ticketPrice / 2.00;
     if(age >= 60) ticketPrice = ticketPrice - (ticketPrice * 0.60);
     if(age >= 60 && gender.equals("F")) ticketPrice = ticketPrice - (ticketPrice * 0.60);
-    if(gender.equals('F')) ticketPrice = ticketPrice - (ticketPrice * 0.25);
     return ticketPrice;
   }
 
