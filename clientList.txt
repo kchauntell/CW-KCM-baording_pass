@@ -1,0 +1,14 @@
+Name: Final Person
+ Email: Testing@test.com
+ Phone: 1234567890
+ Gender: F
+ Age: 49
+Ticket Confirmed : Tue Feb 08 01:57:43 EST 2022
+Depart From: Myrtle Beach, SC
+Departure Time: 03:00 PM
+Boarding Time: 2:15 PM
+Arrival Time: 6:0 PM
+Arriving at: Los Angeles, CA
+Your Ticket Number(s) is : [36172561, 19147680]
+# Tickets Purchased: 2
+Total Price is: $150.0
