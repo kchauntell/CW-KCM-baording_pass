@@ -14,16 +14,17 @@ public class BoardingPass implements Price {
   String from;
   String to;
   String departureTime;
-  public Timestamp arrivalTime;
-  public Timestamp boardingTime;
+  String boardAndArrivalTime;
+//  public Timestamp boardingTime;
 
 
-  BoardingPass (Date date, String from, String to, String depart, ArrayList<String> ticketNum) throws IOException {
+  BoardingPass (Date date, String from, String to, String depart, ArrayList<String> ticketNum, int hour, int min, String amPm) throws IOException {
     this.date = date;
     this.from = from;
     this.to = to;
     this.ticketNumber = String.valueOf(ticketNum);
     this.departureTime = depart;
+    this.boardAndArrivalTime = boardingTimes(hour, min, amPm);
   }
 
   BoardingPass(){
@@ -45,20 +46,33 @@ public class BoardingPass implements Price {
           StandardOpenOption.APPEND);
 
   }
-  public static BoardingPass boardingTimes() throws IOException {
-      BoardingPass bpETA = new BoardingPass();
+  public static String boardingTimes(int hour, int min, String amPm) throws IOException {
 
-      long current = System.currentTimeMillis();
+      long currentTime = minutesToMills(min) + hoursToMills(hour);
 
-      long minutesUntilBoarding = (long)(Math.random() * 30);
 
-      long totalBoardingTime = 45;
-      long flightLengthHours = (long)(Math.random() * 5 + 1);
+      long totalBoardingTime = minutesToMills(45);
+      Random flight = new Random();
+      long flightLengthHours = flight.nextInt(1,5);
 
-      long boardingMills = current + minutesToMills(minutesUntilBoarding);
-      long departure = boardingMills + minutesToMills(totalBoardingTime);
-      long arrival = departure + hoursToMills(flightLengthHours);
-      return null;
+
+      long boardingTimeMills = currentTime - totalBoardingTime;
+      long boardMin = TimeUnit.MILLISECONDS.toMinutes(boardingTimeMills) % 60;
+      long boardHour = TimeUnit.MILLISECONDS.toHours(boardingTimeMills);
+
+      long arrival = currentTime + hoursToMills(flightLengthHours);
+      long arrivalHour = TimeUnit.MILLISECONDS.toHours(arrival);
+      long arrivalMin = TimeUnit.MILLISECONDS.toMinutes(arrival) % 60;
+
+      if(arrivalHour > 12) {
+          arrivalHour = arrivalHour - 12;
+          if(amPm.equals("AM")) amPm = "PM";
+          else amPm = "AM";
+
+      };
+
+      return "Boarding Time: " + boardHour + ":" + boardMin + " " + amPm +"\n" +
+          "Arrival Time: " + arrivalHour + ":" + arrivalMin + " " + amPm ;
   }
 
     private static long minutesToMills(long minutes) {
@@ -74,7 +88,7 @@ public class BoardingPass implements Price {
     return "Ticket Confirmed : " + date +
         "\nDepart From: " + from +
         "\nDeparture Time: " + departureTime +
-        "\nEstimated Arrival Time: " + arrivalTime +
+        "\n" + boardAndArrivalTime +
         "\nArriving at: " + to +
         "\nYour Ticket Number(s) is : " + ticketNumber;
   }

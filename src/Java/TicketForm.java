@@ -440,12 +440,17 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   //Setting new BoardingPass and Client information to class to add to file.
   public BoardingPass setBoardPass () throws IOException {
     ArrayList<String> ticketList = new ArrayList<String>();
+    String amPm = (String)ampmOption.getSelectedItem();
     Date date;
     String from;
     String to;
     String depart;
     String tickets = (String) numOfTicSpinner.getValue();
     int ticketNum ;
+    String time = (String) departureTimeList.getSelectedItem();
+    String[] timeArr = time.split(":");
+    int hour = Integer.parseInt(timeArr[0]);
+    int min = Integer.parseInt(timeArr[1]);
 
     for(var i = 0; i < Integer.parseInt(tickets); i++) {
       ticketNum = Integer.parseInt(BoardingPass.genTicNum());
@@ -458,7 +463,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     depart = String.valueOf(departureTimeList.getSelectedItem()) + " " +
              String.valueOf(ampmOption.getSelectedItem());
 
-    BoardingPass newBoardPass = new BoardingPass(date, from, to, depart,ticketList);
+    BoardingPass newBoardPass = new BoardingPass(date, from, to, depart,ticketList, hour, min, amPm);
     return newBoardPass;
 
   }
@@ -511,6 +516,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         c.add(resadd);
 
         String data1;
+        char gender;
         String data
             = "Name : "
             + tName.getText() + "\n"
@@ -518,12 +524,16 @@ public class TicketForm extends JFrame implements ActionListener, Price {
             + tEmail.getText() + "\n"
             + "Contact Number: "
             + tPhoneNumber.getText() + "\n";
-        if (male.isSelected())
+        if (male.isSelected()) {
+          gender = 'M';
           data1 = "Gender : Male"
               + "\n";
-        else
-          data1 = "Gender : Female"
-              + "\n";
+        }
+        else {
+          gender = 'F';
+          data1 = "Gender : Female" +
+              "\n";
+        }
         String data2
             = "DOB : "
             + date.getSelectedItem()
@@ -554,7 +564,7 @@ public class TicketForm extends JFrame implements ActionListener, Price {
               "\n" + "# Tickets Purchased: " + (String)numOfTicSpinner.getValue() +
               "\n" + "Total Price is: $" +
               totalPrice(ageSetter((String) year.getSelectedItem(), (String) Objects.requireNonNull(month.getSelectedItem()),
-                  (String) date.getSelectedItem()), data1, (String)numOfTicSpinner.getValue()));
+                  (String) date.getSelectedItem()), gender, (String)numOfTicSpinner.getValue()));
         } catch (IOException ex) {
           ex.printStackTrace();
         }
@@ -569,13 +579,15 @@ public class TicketForm extends JFrame implements ActionListener, Price {
           count++;
         }
         String data9
+            = addBoardPass.boardAndArrivalTime + "\n";
+        String data10
             = "Your Total Price is: $" +
             totalPrice(ageSetter((String) year.getSelectedItem(), (String) Objects.requireNonNull(month.getSelectedItem()),
                     (String) date.getSelectedItem()),
-                    data1,
+                    gender,
                     (String)numOfTicSpinner.getValue());
 
-        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8 + data9);
+        tout.setText(data + data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8 + data9 + data10);
         tout.setEditable(false);
         res.setText("Thank You! We ready to Vibe!");
 
