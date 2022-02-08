@@ -50,11 +50,6 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   private JLabel departureDate;
   private JButton pickDate;
   private JTextField departDate;
-  private JLabel children;
-  private JSpinner numOfChildren;
-  private JLabel seniors;
-  private JSpinner numOfSeniors;
-
 
   // method to bring up  and choose date...
   public void Picker() {
@@ -160,11 +155,9 @@ public class TicketForm extends JFrame implements ActionListener, Price {
   // for JSpinner
   String[] numberOfTics = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                            "13", "14", "15", "16", "17", "18", "19", "20"};
-//  String[] numberOfTics2 = {"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-//                            "12", "13", "14", "15", "16", "17", "18", "19" };
+
   SpinnerListModel ticketNumModel = new SpinnerListModel(numberOfTics);
-//  SpinnerListModel childNumModel = new SpinnerListModel(numberOfTics2);
-//  SpinnerListModel seniorsNumModel = new SpinnerListModel(numberOfTics2);
+
 
   //for departure times
   String[] departTimes = {"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00",
@@ -347,30 +340,6 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     numOfTicSpinner.setLocation(225, 300);
     c.add(numOfTicSpinner);
 
-//    children = new JLabel("# of Children under 12: ");
-//    children.setFont(new Font("Monospace", Font.PLAIN, 14));
-//    children.setForeground(new Color(34,205,247));
-//    children.setSize(250, 20);
-//    children.setLocation(100,325);
-//    c.add(children);
-//
-//    numOfChildren = new JSpinner(childNumModel);
-//    numOfChildren.setSize(50, 20);
-//    numOfChildren.setLocation(270, 325);
-//    c.add(numOfChildren);
-//
-//    seniors = new JLabel("# of Adults over 65: ");
-//    seniors.setFont(new Font("Monospace", Font.PLAIN, 14));
-//    seniors.setForeground(new Color(34,205,247));
-//    seniors.setSize(250, 20);
-//    seniors.setLocation(100,350);
-//    c.add(seniors);
-//
-//    numOfSeniors = new JSpinner(seniorsNumModel);
-//    numOfSeniors.setSize(50, 20);
-//    numOfSeniors.setLocation(245, 350);
-//    c.add(numOfSeniors);
-
     departureDate = new JLabel("Departure Date: ");
     departureDate.setFont(new Font("Monospace", Font.PLAIN, 14));
     departureDate.setForeground(new Color(34,205,247));
@@ -418,21 +387,17 @@ public class TicketForm extends JFrame implements ActionListener, Price {
     tout.setLocation(500, 80);
     tout.setLineWrap(true);
     tout.setEditable(false);
-//    c.add(tout);
 
     res = new JLabel("");
     res.setFont(new Font("Arial", Font.PLAIN, 20));
     res.setSize(500, 25);
     res.setLocation(100, 500);
-//    c.add(res);
 
     resadd = new JTextArea();
     resadd.setFont(new Font("Arial", Font.PLAIN, 15));
     resadd.setSize(200, 75);
     resadd.setLocation(580, 175);
     resadd.setLineWrap(true);
-//    c.add(resadd);
-
 
     setVisible(true);
   }
@@ -493,13 +458,6 @@ public class TicketForm extends JFrame implements ActionListener, Price {
         StandardOpenOption.CREATE,
         StandardOpenOption.APPEND);
   }
-
-  //calculate total price
-//  public double getTotalPrice() {
-//    int numTotalTickets = (Integer)numOfTicSpinner.getValue();
-//    int
-//
-//  }
 
 
   // Once Submit Button is hit....

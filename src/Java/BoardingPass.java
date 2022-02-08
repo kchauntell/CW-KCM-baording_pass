@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.sql.Timestamp;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.lineSeparator;
@@ -15,8 +14,6 @@ public class BoardingPass implements Price {
   String to;
   String departureTime;
   String boardAndArrivalTime;
-//  public Timestamp boardingTime;
-
 
   BoardingPass (Date date, String from, String to, String depart, ArrayList<String> ticketNum, int hour, int min, String amPm) throws IOException {
     this.date = date;
@@ -25,10 +22,6 @@ public class BoardingPass implements Price {
     this.ticketNumber = String.valueOf(ticketNum);
     this.departureTime = depart;
     this.boardAndArrivalTime = boardingTimes(hour, min, amPm);
-  }
-
-  BoardingPass(){
-
   }
 
   public static String genTicNum() throws IOException {

@@ -1,5 +1,3 @@
-
-
 public class Client {
   String firstAndLastName;
   String email;
